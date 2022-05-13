@@ -1,64 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Getting Started
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is how you can set up the project locally using a terminal (bash or cmd). To get a local copy up and running, follow these simple steps.
 
-## About Laravel
+### Prerequisites
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Below are the tools needed for you to run the project on your computer. Click on every tool listed below and follow the instruction provided on their respective sites detailing how you can install them.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* [php](https://www.php.net/)
+* [composer](https://getcomposer.org/)
+* [laravel](https://laravel.com/)
+* [mysql](https://www.mysql.com/)
+* [node](https://nodejs.org/en/)
+* [Git](https://git-scm.com/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Step 1: Clone The Project
 
-## Learning Laravel
+Clone this repository into your local directory, Use the command below:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```sh
+# Clone project to a computer
+git clone https://github.com/mkdonz/TaskTracker.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Navigate to the project root directory
+cd TaskTracker
+```
 
-## Laravel Sponsors
+### Step 2: Install Composer Dependencies
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Once you clone the Laravel project, you must install all the project dependencies. When you run `composer install`, composer checks the `composer.json` file for all packages needed by Laravel in that particular project. To install all the dependencies, run composer install like below:
 
-### Premium Partners
+```sh
+# install all the composer dependencies
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Step 3: Install npm Dependecies
 
-## Contributing
+We must install the necessary NPM packages. These are packages mostly needed for the front-end. Run `npm install` to install the packages. Run the commands below to install the needed packages:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+# install all packages need by the frontend
+npm install
+```
 
-## Code of Conduct
+### Step 4: Configure The Project
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The `.env` files are not generally committed to source control for security reasons. There is `.env.example`, which is a template of the `.env` file that the project expects us to have. Make a copy of the `.env` file from the `.env.example` file.
 
-## Security Vulnerabilities
+Run commands below to copy the `.env.example` file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```sh
+# commands works in linux and unix
+cp .env.example .env 
+```
 
-## License
+> ***Note: remember to modify the created `env` file and make sure that it reflects your infrastructure settings. An example is your `MySql` settings, they should be reflected in the `.env` file.***
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### step 5: Generate App Encryption Key
+
+Laravel requires you to have an app encryption key. The key is randomly generated and stored in your `.env` file. The app will use this encryption key to encode various elements of your application from cookies to password hashes and more.
+
+```sh
+#Generate laravel app encryption key
+php artisan key:generate
+```
+
+### step 6: Create a Database For the Project
+
+Create an empty database for your project using the MySQL database tools. ***In the `.env` file, add database information to allow Laravel Project to connect to the database***. Create a schema in MySQL database using CLI:
+
+```sh
+# connect to mysql database
+# replace 'user' with your mysql user name in the command bellow
+mysql -u user -p
+
+# enter the specified user password in the prompt
+
+# create the database and give it a name you desire
+mysql> CREATE DATABASE laravel;
+
+
+# exist from mysql
+mysql> \q
+```
+
+#### Note: Reminder on database configurations in `.env` file
+
+> To allow Laravel to connect to the database we just created above. Add the connection configurations in the `.env` file and Laravel will handle the connection from there. In the `.env` file make sure that  `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` match the configurations of the database you just created. This will allow you to run migrations in the next step.
+
+### Step 7: Database Migration
+
+Once your credentials are in the `.env file`, now you can migrate your database. Run `PHP artisan migrate`. Check your database to make sure the tables needed to run the application were successfully migrated the way we expected.
+
+```sh
+# Run migrationto created neede tables
+php artisan migrate
+```
+
+### Step 8: Start The Project 
+
+Finally, run the project by running the command below:
+
+```sh
+# Run server
+php artisan serve
+```
+
+Access the project by visit the URL below:
+
+[project](`http://127.0.0.1:8000/`) : `http://127.0.0.1:8000/`
